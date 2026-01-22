@@ -58,11 +58,11 @@
                     </div>   
 
                     <div class="form-group"> 
-                      <label>Link Facebook</label> 
-                      <input type="text" name="link_facebook" class="form-control" 
-                        placeholder="Masukkan link Facebook..." 
-                        value="<?php echo $p->link_facebook; ?>">  
-                      <?php echo form_error('link_facebook'); ?> 
+                      <label>Link WhatsApp</label> 
+                      <input type="text" name="link_whatsapp" class="form-control" 
+                        placeholder="Masukkan link whatsapp..." 
+                        value="<?php echo $p->link_whatsapp; ?>">  
+                      <?php echo form_error('link_whatsapp'); ?> 
                     </div>  
 
                     <div class="form-group"> 

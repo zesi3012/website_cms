@@ -28,7 +28,8 @@ th"></i> Kategori Artikel <small> Tambah Kategori Baru</small>
                             <form method="post" action="<?php echo base_url('dashboard/kategori_tambah_aksi'); ?>">
                                 <div class="form-group">
                                     <label>Nama Kategori</label>
-                                    <input type="text" name="kategori" class="form-control" placeholder="Masukan Nama Kategori . . . " required>
+                                    <input type="text" name="kategori" class="form-control"
+                                        placeholder="Masukan Nama Kategori . . . " required>
                                     <?php echo form_error('kategori'); ?>
                                 </div>
                                 <div class="form-group">

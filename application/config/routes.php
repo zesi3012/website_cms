@@ -1,55 +1,71 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-/*
-| -------------------------------------------------------------------------
-| URI ROUTING
-| -------------------------------------------------------------------------
-| This file lets you re-map URI requests to specific controller functions.
-|
-| Typically there is a one-to-one relationship between a URL string
-| and its corresponding controller class/method. The segments in a
-| URL normally follow this pattern:
-|
-|	example.com/class/method/id/
-|
-| In some instances, however, you may want to remap this relationship
-| so that a different class/function is called than the one
-| corresponding to the URL.
-|
-| Please see the user guide for complete details:
-|
-|	https://codeigniter.com/userguide3/general/routing.html
-|
-| -------------------------------------------------------------------------
-| RESERVED ROUTES
-| -------------------------------------------------------------------------
-|
-| There are three reserved routes:
-|
-|	$route['default_controller'] = 'welcome';
-|
-| This route indicates which controller class should be loaded if the
-| URI contains no data. In the above example, the "welcome" class
-| would be loaded.
-|
-|	$route['404_override'] = 'errors/page_missing';
-|
-| This route will tell the Router which controller/method to use if those
-| provided in the URL cannot be matched to a valid route.
-|
-|	$route['translate_uri_dashes'] = FALSE;
-|
-| This is not exactly a route, but allows you to automatically route
-| controller and method names that contain dashes. '-' isn't a valid
-| class or method name character, so it requires translation.
-| When you set this option to TRUE, it will replace ALL dashes in the
-| controller and method URI segments.
-|
-| Examples:	my-controller/index	-> my_controller/index
-|		my-controller/my-method	-> my_controller/my_method
-*/
-$route['default_controller'] = 'login';
-$route['dashboard'] = 'dashboard/index';
-$route['404_override'] = '';
+$route['default_controller'] = 'welcome';
+
+// Login & Dashboard
+$route['login'] = 'login';
+$route['dashboard'] = 'dashboard';
+
+// -------------------- DASHBOARD PORTOFOLIO ADMIN --------------------
+$route['dashboard/portofolio'] = 'dashboard/portofolio';
+$route['dashboard/portofolio/tambah'] = 'dashboard/portofolio_tambah';
+$route['dashboard/portofolio/tambah_aksi'] = 'dashboard/portofolio_tambah_aksi';
+$route['dashboard/portofolio/edit/(:num)'] = 'dashboard/portofolio_edit/$1';
+$route['dashboard/portofolio/update'] = 'dashboard/portofolio_update';
+$route['dashboard/portofolio/hapus/(:num)'] = 'dashboard/portofolio_hapus/$1';
+
+// -------------------- DASHBOARD ARTIKEL ADMIN --------------------
+$route['dashboard/artikel'] = 'dashboard/artikel';
+$route['dashboard/artikel_tambah'] = 'dashboard/artikel_tambah';
+$route['dashboard/artikel_tambah_aksi'] = 'dashboard/artikel_aksi';
+$route['dashboard/artikel_edit/(:num)'] = 'dashboard/artikel_edit/$1';
+$route['dashboard/artikel_update'] = 'dashboard/artikel_update';
+$route['dashboard/artikel_hapus/(:num)'] = 'dashboard/artikel_hapus/$1';
+
+// -------------------- DASHBOARD LAYANAN --------------------
+$route['dashboard/layanan'] = 'dashboard/layanan';
+$route['dashboard/layanan/tambah'] = 'dashboard/layanan_tambah';
+$route['dashboard/layanan/tambah_aksi'] = 'dashboard/layanan_tambah_aksi';
+$route['dashboard/layanan/edit/(:num)'] = 'dashboard/layanan_edit/$1';
+$route['dashboard/layanan/update'] = 'dashboard/layanan_update';
+$route['dashboard/layanan/hapus/(:num)'] = 'dashboard/layanan_hapus/$1';
+
+
+
+// -------------------- FRONTEND --------------------
+// Detail artikel berdasarkan slug (HARUS DIATAS page & kategori)
+$route['artikel/(:any)'] = 'welcome/single/$1';
+
+// Blog / Frontend
+$route['blog'] = 'welcome/blog';
+$route['blog/(:num)'] = 'welcome/blog/$1';
+
+// Kategori
+$route['kategori/(:any)'] = 'welcome/kategori/$1';
+$route['kategori/(:any)/(:num)'] = 'welcome/kategori/$1/$2';
+
+// Search
+$route['search'] = 'welcome/search';
+$route['search/(:any)'] = 'welcome/search/$1';
+$route['search/(:any)/(:num)'] = 'welcome/search/$1/$2';
+
+// Page
+$route['page/(:any)'] = 'welcome/page/$1';
+
+// Detail artikel berdasarkan slug
+$route['artikel/(:any)'] = 'welcome/single/$1';  // slug frontend
+
+$route['portofolio'] = 'welcome/portofolio';  // List portfolio
+$route['portofolio/(:any)'] = 'welcome/portofolio_detail/$1';  // Detail portfolio
+
+$route['dashboard/testimonial_add'] = 'dashboard/testimonial_add';
+$route['testimonial'] = 'welcome/testimonial';
+
+$route['layanan'] = 'welcome/layanan';
+$route['layanan/(:any)'] = 'welcome/layanan_detail/$1';
+
+
+// 404
+$route['404_override'] = 'welcome/notfound';
 $route['translate_uri_dashes'] = FALSE;

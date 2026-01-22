@@ -4,103 +4,195 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Halaman Log In</title>
+  <title>Login | Website Saya</title>
 
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Google Font -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap">
 
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="<?php echo base_url('assets/plugins/fontawesome-free/css/all.min.css'); ?>">
+  <link rel="stylesheet" href="<?= base_url('assets/plugins/fontawesome-free/css/all.min.css'); ?>">
 
-  <!-- icheck bootstrap -->
-  <link rel="stylesheet" href="<?php echo base_url('assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css'); ?>">
+  <!-- AdminLTE -->
+  <link rel="stylesheet" href="<?= base_url('assets/dist/css/adminlte.min.css'); ?>">
 
-  <!-- Theme style -->
-  <link rel="stylesheet" href="<?php echo base_url('assets/dist/css/adminlte.min.css'); ?>">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #0f1c3f, #142b63);
+      min-height: 100vh;
+    }
+
+    .login-box {
+      width: 420px;
+    }
+
+    /* header icon */
+    .login-header {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .login-header i {
+      font-size: 72px;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+
+    .login-header h3 {
+      color: #ffffff;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .login-header p {
+      color: #cfd8ff;
+      font-size: 14px;
+    }
+
+    /* card */
+    .card {
+      border-radius: 22px;
+      border: none;
+      background: rgba(255,255,255,0.95);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+    }
+
+    .login-card-body {
+      padding: 35px 30px;
+      border-radius: 22px;
+    }
+
+    .login-box-msg {
+      font-size: 14px;
+      margin-bottom: 25px;
+      color: #555;
+    }
+
+    /* input */
+    .input-group-text {
+      background: #f4f6f9;
+      border-radius: 0 12px 12px 0;
+    }
+
+    .form-control {
+      border-radius: 12px 0 0 12px;
+      height: 46px;
+    }
+
+    /* button */
+    .btn-primary {
+      border-radius: 12px;
+      padding: 11px;
+      font-size: 15px;
+      font-weight: 600;
+      transition: all .3s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 18px rgba(13,110,253,.4);
+    }
+
+    /* alert */
+    .alert {
+      border-radius: 14px;
+      font-size: 14px;
+    }
+
+    /* link */
+    .register-link a {
+      color: #0d6efd;
+      font-weight: 600;
+    }
+
+    .register-link a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 
-<body class="hold-transition login-page">
+<body class="hold-transition d-flex justify-content-center align-items-center">
+
   <div class="login-box">
-    <div class="login-logo">
-      <a href="<?php echo base_url(); ?>"><b>Website</b>Saya</a>
+
+    <!-- HEADER -->
+    <div class="login-header">
+      <i class="fas fa-user-shield"></i>
+      <h3>Selamat Datang</h3>
+      <p>Silakan login untuk melanjutkan</p>
     </div>
-    <!-- /.login-logo -->
 
-    <?php
-    if (isset($_GET['alert'])) {
-      if ($_GET['alert'] == 'gagal') {
-        echo "
-          <div class='alert alert-danger font-weight-bold text-center'>
-            Maaf! Username & Password Salah.
-          </div>
-        ";
-      } elseif ($_GET['alert'] == 'belum_login') {
-        echo "
-          <div class='alert alert-danger font-weight-bold text-center'>
-            Anda Harus Login Terlebih Dulu!
-          </div>
-        ";
-      } elseif ($_GET['alert'] == 'logout') {
-        echo "
-          <div class='alert alert-success font-weight-bold text-center'>
-            Anda Telah Logout!
-          </div>
-        ";
-      }
-    }
-    ?>
+    <!-- ALERT -->
+    <?php if (isset($_GET['alert'])): ?>
+      <?php if ($_GET['alert'] == 'gagal'): ?>
+        <div class="alert alert-danger text-center">
+          <i class="fas fa-exclamation-circle"></i> Username atau password salah
+        </div>
+      <?php elseif ($_GET['alert'] == 'belum_login'): ?>
+        <div class="alert alert-warning text-center">
+          <i class="fas fa-info-circle"></i> Silakan login terlebih dahulu
+        </div>
+      <?php elseif ($_GET['alert'] == 'logout'): ?>
+        <div class="alert alert-success text-center">
+          <i class="fas fa-check-circle"></i> Anda telah logout
+        </div>
+      <?php endif; ?>
+    <?php endif; ?>
 
+    <!-- CARD -->
     <div class="card">
       <div class="card-body login-card-body">
-        <p class="login-box-msg">Sign in to start mywebsite</p>
 
-        <form action="<?php echo base_url('login/aksi'); ?>" method="post">
+        <p class="login-box-msg">Masukkan username dan password Anda</p>
+
+        <form action="<?= base_url('login/aksi'); ?>" method="post">
+
+          <!-- Username -->
           <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Username" name="username" required>
+            <input type="text" name="username" class="form-control"
+                   placeholder="Username" value="<?= set_value('username'); ?>">
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-user"></span>
               </div>
             </div>
           </div>
-          <?php echo form_error('username'); ?>
+          <?= form_error('username','<small class="text-danger">','</small>'); ?>
 
-          <div class="input-group mb-3">
-            <input type="password" class="form-control" placeholder="Password" name="password" required>
+          <!-- Password -->
+          <div class="input-group mb-4">
+            <input type="password" name="password" class="form-control"
+                   placeholder="Password">
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-lock"></span>
               </div>
             </div>
           </div>
-          <?php echo form_error('password'); ?>
+          <?= form_error('password','<small class="text-danger">','</small>'); ?>
 
-          <div class="row">
-            <div class="col-8">
-              <div class="icheck-primary">
-                <input type="checkbox" id="remember">
-                <label for="remember">
-                  Remember Me
-                </label>
-              </div>
-            </div>
-            <div class="col-4">
-              <button type="submit" class="btn btn-primary btn-block">Sign In</button>
-            </div>
-          </div>
+          <button type="submit" class="btn btn-primary btn-block">
+            <i class="fas fa-sign-in-alt"></i> Login
+          </button>
         </form>
+
+        <div class="mt-4 text-center register-link">
+          <span>Belum punya akun?</span>
+          <a href="<?= base_url('register'); ?>">
+            <i class="fas fa-user-plus"></i> Daftar
+          </a>
+        </div>
+
       </div>
-      <!-- /.login-card-body -->
     </div>
+
   </div>
-  <!-- /.login-box -->
 
-  <!-- jQuery -->
-  <script src="<?php echo base_url('assets/plugins/jquery/jquery.min.js'); ?>"></script>
-  <!-- Bootstrap 4 -->
-  <script src="<?php echo base_url('assets/plugins/bootstrap/js/bootstrap.bundle.min.js'); ?>"></script>
-  <!-- AdminLTE App -->
-  <script src="<?php echo base_url('assets/dist/js/adminlte.min.js'); ?>"></script>
+  <!-- Scripts -->
+  <script src="<?= base_url('assets/plugins/jquery/jquery.min.js'); ?>"></script>
+  <script src="<?= base_url('assets/plugins/bootstrap/js/bootstrap.bundle.min.js'); ?>"></script>
+  <script src="<?= base_url('assets/dist/js/adminlte.min.js'); ?>"></script>
+
 </body>
-
 </html>
